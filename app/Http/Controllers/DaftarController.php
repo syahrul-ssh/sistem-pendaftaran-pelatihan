@@ -95,6 +95,17 @@ class DaftarController extends Controller
         return view('daftar.edit', compact('daftar'));
     }
 
+    public function updatePayed(Daftar $daftar)
+    {
+        //insert request dari form ke database
+        $daftar = Daftar::find($daftar->id);
+        $daftar->is_payed = 'bayar';
+        $daftar->save();
+
+        //riderict juka sukses
+        return redirect()->route('daftar.index')->with('success', 'Jadwal berhasil diupdate!');
+    }
+
     /**
      * Update the specified resource in storage.
      *

@@ -88,7 +88,9 @@
                     @if ($jadwals->count())
                         @foreach ($jadwals as $jadwal)
                             @php
-                                $daftars = App\Models\Daftar::where('id_jadwal', 'like', $jadwal->id)->count();
+                                $daftars = App\Models\Daftar::where('is_payed', 'like', 'bayar')
+                                    ->where('id_jadwal', 'like', $jadwal->id)
+                                    ->count();
                             @endphp
                             <div class="col-xl-4 col-md-6 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">

@@ -29,6 +29,7 @@ Auth::routes([
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('daftar', DaftarController::class);
+Route::put('daftar-payed/{daftar:id}', [DaftarController::class, 'updatePayed'])->name('daftar.payed');
 Route::get('/daftar-filtered/{daftar:tanggal_pelatihan?}', [DaftarController::class, 'indexFiltered'])->name('daftar.filter');
 Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran');
 Route::get('/pendaftaran/{jadwal}/create', [PendaftaranController::class, 'create'])->name('pendaftaran.create');

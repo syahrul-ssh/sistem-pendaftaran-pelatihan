@@ -47,6 +47,7 @@
                         <th scope="col">Status</th>
                         <th scope="col">Instansi</th>
                         <th scope="col">Kode Pendaftaran</th>
+                        <th scope="col">Status Bayar</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -65,7 +66,13 @@
                             <td class="text-sm-center">{{ $daftar->status }}</td>
                             <td class="text-sm-center">{{ $daftar->instansi }}</td>
                             <td class="text-sm-center">{{ $daftar->kode_unik }}</td>
+                            <td class="text-sm-center">{{ $daftar->is_payed }}</td>
                             <td class="text-sm-center">
+                                <form method="POST" action="{{ route('daftar.payed', $daftar->id) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-success btn-sm">Payed</button>
+                                </form>
                                 <form action="{{ route('daftar.destroy', $daftar->id) }}" method="POST">
                                     <a type="button" class="btn btn-warning btn-sm"
                                         href="{{ route('selesai', $daftar->id) }}">Complete</a>

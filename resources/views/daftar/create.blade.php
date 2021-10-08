@@ -12,7 +12,7 @@
         <div class="row">
             @if ($jadwal->count())
                 <form action="{{ route('daftar.store') }}" method="POST">
-                    @csrf
+                    {{ csrf_field() }}
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
