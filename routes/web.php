@@ -20,7 +20,7 @@ use App\Http\Controllers\PendaftaranController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'landing'])->name('landing');
+Route::get('/', [App\Http\Controllers\LandingController::class, 'landing'])->name('landing');
 
 Auth::routes([
     'register' => false,

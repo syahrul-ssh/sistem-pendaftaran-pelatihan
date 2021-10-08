@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Daftar;
 use App\Models\Selesai;
-use App\Models\SelesaiVaksin;
 use Illuminate\Http\Request;
 use PDF;
 
 class CompleteController extends Controller
 {
-
     public function getData(Daftar $daftar)
     {
         $newRecord = $daftar->replicate();
