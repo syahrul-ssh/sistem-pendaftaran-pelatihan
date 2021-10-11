@@ -28,7 +28,7 @@ class CreateSelesaisTable extends Migration
             $table->string('status');
             $table->string('instansi')->nullable();
             $table->string('kode_unik');
-            $table->boolean('is_payed')->default(0);
+            $table->string('is_payed');
             $table->integer('id_jadwal');
             $table->timestamps();
         });

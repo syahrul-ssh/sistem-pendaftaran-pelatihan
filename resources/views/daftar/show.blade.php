@@ -26,7 +26,8 @@
                     <div class="form-group">
                         <h3>Nomor Pendaftaran:</h3>
                         <h4><b>{{ $daftar->kode_unik }}</b></h4>
-                        <p>Harap ingat Nomor Pendaftaran Kamu!</p>
+                        <p>Harap ingat Nomor Pendaftaran Kamu! dan Harap untuk melakukan Pembayaran untuk Dapat Mengikuti
+                            Pelatihan ini!</p>
                     </div>
                 </div>
                 <table class="table">
