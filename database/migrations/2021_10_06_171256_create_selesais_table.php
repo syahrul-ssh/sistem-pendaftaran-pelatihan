@@ -21,7 +21,7 @@ class CreateSelesaisTable extends Migration
             $table->string('nama');
             $table->string('jenis_kelamin');
             $table->string('nomor_hp');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->text('alamat');

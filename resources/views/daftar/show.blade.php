@@ -22,14 +22,20 @@
                     <a class="btn btn-secondary" href="{{ route('cetak', $daftar->id) }}">Cetak Kartu
                         Pendaftaran</a>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <h3>Nomor Pendaftaran:</h3>
-                        <h4><b>{{ $daftar->kode_unik }}</b></h4>
-                        <p>Harap ingat Nomor Pendaftaran Kamu! dan Harap untuk melakukan Pembayaran untuk Dapat Mengikuti
-                            Pelatihan ini!</p>
-                    </div>
+            </div>
+        @endif
+        <div class="row text-center">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <h3>Nomor Pendaftaran:</h3>
+                    <h4><b>{{ $daftar->kode_unik }}</b></h4>
+                    <p>Harap ingat Nomor Pendaftaran Kamu! dan Harap untuk melakukan Pembayaran untuk Dapat Mengikuti
+                        Pelatihan ini!</p>
                 </div>
+            </div>
+        </div>
+        @if ($message = Session::get('success'))
+            <div class="row text-center">
                 <table class="table">
                     <tr>
                         <th scope="col">Tanggal Pelatihan</th>
@@ -76,6 +82,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
                     <a class="btn btn-primary" href="{{ route('daftar.edit', $daftar->id) }}">Edit Data</a>
                 </div>
+            </div>
         @endif
+        <p class="text-center">untuk melihat data anda kembali bisa di copy nomor pendaftaran ini dan paste kan di
+            cek pendaftaran!
+        </p>
     </div>
 @endsection

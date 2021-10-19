@@ -18,14 +18,15 @@ class CetakKartuController extends Controller
     public function cetakAbsen()
     {
         $daftar = Daftar::all();
-        dd($daftar);
         $pdf = PDF::loadview('cetak.absen_pdf', ['daftar'=>$daftar])
                 ->setPaper('a4', 'landscape');
         return $pdf->download('cetak-absen.pdf');
     }
-    public function cetakAbsenPerTanggal($keyword)
+    public function cetakAbsenPerTanggal($keyword1)
     {
-        $daftar = Daftar::where('tanggal_pelatihan', 'like', "%" . $keyword . "%")->latest()->simplePaginate(100000);
+        $daftar = Daftar::where('tanggal_pelatihan', 'like', "%" . $keyword1 . "%")
+                ->latest()
+                ->simplePaginate(100000);
         // dd($daftars);
         
         // $keyword = $request->filter2;

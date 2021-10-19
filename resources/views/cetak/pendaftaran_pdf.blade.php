@@ -33,7 +33,7 @@
                 <td class="h6">: {{ $daftar->tempat_lahir }}, {{ $daftar->tanggal_lahir }}</td>
             </tr>
             <tr>
-                <th scope="col" class="h6">Jenis Pelatihan :</th>
+                <th scope="col" class="h6">Jenis Pelatihan</th>
                 <td class="h6">: {{ $daftar->jenis_pelatihan }}</td>
             </tr>
             <tr>

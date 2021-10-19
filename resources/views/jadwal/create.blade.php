@@ -23,9 +23,11 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Pilih Pelatihan:</strong>
-                            <select class="custom-select" id="inputGroupSelect01" name="jenis_pelatihan">
+                            <select class="custom-select" id="inputGroupSelect01" name="jenis_pelatihan" required>
+                                <option selected value="">
+                                    Pilih Pelatihan...</option>
                                 @foreach ($pelatihans as $pelatihans)
-                                    <option selected value="{{ $pelatihans->jenis_pelatihan }}">
+                                    <option value="{{ $pelatihans->jenis_pelatihan }}">
                                         {{ $pelatihans->jenis_pelatihan }}</option>
                                 @endforeach
                             </select>
@@ -34,25 +36,25 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Tanggal:</strong>
-                            <input type="date" name="tanggal" class="form-control">
+                            <input type="date" name="tanggal" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Jam:</strong>
-                            <input type="time" name="jam" class="form-control">
+                            <input type="time" name="jam" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Sesi ke :</strong>
-                            <input type="text" name="sesi" class="form-control">
+                            <input type="text" name="sesi" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Limit Peserta :</strong>
-                            <input type="number" name="limit_peserta" class="form-control">
+                            <input type="number" name="limit_peserta" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Daftar;
 use App\Models\Jadwal;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,7 +18,14 @@ class DaftarController extends Controller
     public function index()
     {
         $jadwals = Jadwal::all();
-        $daftars = Daftar::orderBy('tanggal_pelatihan', 'asc')->simplePaginate(5);
+        $expired_daftar = Daftar::where('is_payed', 'like', "belum")
+                ->where('created_at', '<', Carbon::now()->subDays(2))
+                ->get();
+        foreach ($expired_daftar as $expire) {
+            $expire->delete();
+        }
+        $daftars = Daftar::orderBy('tanggal_pelatihan', 'asc')
+                ->simplePaginate(5);
         return view('daftar.index', compact('daftars', 'jadwals'))
                 ->with('i', (request()->input('page', 1)-1)*5);
         
@@ -25,9 +33,15 @@ class DaftarController extends Controller
     public function indexFiltered(Request $request)
     {
         $jadwals = Jadwal::all();
-        $keyword = $request->filter;
-        $daftars = Daftar::where('tanggal_pelatihan', 'like', "%" . $keyword . "%")->latest()->simplePaginate(5);
-        return view('daftar.filter', compact('daftars', 'jadwals', 'keyword'))
+        $keyword1 = $request->filter1;
+        $keyword2 = $request->filter2;
+        $keyword3 = $request->filter3;
+        $daftars = Daftar::where('tanggal_pelatihan', 'like', "%" . $keyword1 . "%")
+                ->where('is_payed', 'like', "%" . $keyword2 . "%")
+                ->where('kode_unik', 'like', "%" . $keyword3 . "%")
+                ->latest()
+                ->simplePaginate(5);
+        return view('daftar.filter', compact('daftars', 'jadwals', 'keyword1', 'keyword2', 'keyword3'))
                 ->with('i', (request()->input('page', 1)-1)*5);
     }
     

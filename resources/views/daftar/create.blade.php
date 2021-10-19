@@ -41,14 +41,14 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nama:</strong>
-                                <input type="text" name="nama" class="form-control">
+                                <input type="text" name="nama" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Jenis Kelamin:</strong>
-                                <select class="custom-select" id="inputGroupSelect02" name="jenis_kelamin">
-                                    <option selected>
+                                <select class="custom-select" id="inputGroupSelect02" name="jenis_kelamin" required>
+                                    <option value="" selected>
                                         Pilih Disini ...</option>
                                     <option value="Laki-Laki">
                                         Laki-Laki</option>
@@ -60,39 +60,39 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Nomor Telepon yang bisa dihubungi/WA:</strong>
-                                <input type="number" name="nomor_hp" class="form-control">
+                                <input type="number" name="nomor_hp" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Email:</strong>
-                                <input type="email" name="email" class="form-control">
+                                <input type="email" name="email" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Tempat Lahir:</strong>
-                                <input type="text" name="tempat_lahir" class="form-control">
+                                <input type="text" name="tempat_lahir" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Tanggal Lahir:</strong>
-                                <input type="date" name="tanggal_lahir" class="form-control">
+                                <input type="date" name="tanggal_lahir" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Alamat:</strong>
-                                <textarea class="form-control" style="height:150px" name="alamat"
-                                    placeholder="Alamat"></textarea>
+                                <textarea class="form-control" style="height:150px" name="alamat" placeholder="Alamat"
+                                    required></textarea>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Status:</strong>
-                                <select class="custom-select" id="inputGroupSelect03" name="status">
-                                    <option selected>
+                                <select class="custom-select" id="inputGroupSelect03" name="status" required>
+                                    <option value="" selected>
                                         Pilih Disini ...</option>
                                     <option value="Mahasiswa">
                                         Mahasiswa</option>
