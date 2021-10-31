@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use App\Models\Pelatihan;
+use App\Models\Tanggal;
 use Carbon\Carbon;
 
 class JadwalController extends Controller
@@ -58,8 +59,16 @@ class JadwalController extends Controller
         //insert request dari form ke database
         Jadwal::create($request->all());
 
+        $check = Tanggal::where('tanggal', $request->tanggal)->first();
+        if ($check != null) {
+            return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan!');
+        } else {
+            Tanggal::create(['tanggal'=>$request->tanggal]);
+            return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan!');
+        }
+
         //riderict juka sukses
-        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan!');
+        
     }
 
     /**
