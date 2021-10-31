@@ -37,14 +37,18 @@
                 <tbody>
                     @foreach ($selesais as $selesai)
                         <tr>
-                            <td class="text-sm-center">{{ $selesai->tanggal_pelatihan }}</td>
+                            <td class="text-sm-center">
+                                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $selesai->tanggal_pelatihan)->format('d-m-Y') }}
+                            </td>
                             <td class="text-sm-center">{{ $selesai->jenis_pelatihan }}</td>
                             <td class="text-sm-center">{{ $selesai->sesi }}</td>
                             <td>{{ $selesai->nama }}</td>
                             <td class="text-sm-center">{{ $selesai->jenis_kelamin }}</td>
                             <td class="text-sm-center">{{ $selesai->nomor_hp }}</td>
                             <td>{{ $selesai->email }}</td>
-                            <td>{{ $selesai->tempat_lahir }}, {{ $selesai->tanggal_lahir }}</td>
+                            <td>{{ $selesai->tempat_lahir }},
+                                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $selesai->tanggal_lahir)->format('d-m-Y') }}}
+                            </td>
                             <td>{{ $selesai->alamat }}</td>
                             <td class="text-sm-center">{{ $selesai->status }}</td>
                             <td class="text-sm-center">{{ $selesai->instansi }}</td>
@@ -54,7 +58,8 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
+                                        title="delete"><i class="fas fa-trash"></i></button>
                                 </form>
 
                             </td>

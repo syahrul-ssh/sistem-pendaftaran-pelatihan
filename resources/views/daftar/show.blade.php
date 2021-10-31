@@ -39,7 +39,8 @@
                 <table class="table">
                     <tr>
                         <th scope="col">Tanggal Pelatihan</th>
-                        <td>{{ $daftar->tanggal_pelatihan }}</td>
+                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $daftar->tanggal_pelatihan)->format('d-m-Y') }}
+                        </td>
                     </tr>
                     <tr>
                         <th scope="col">Jenis Pelatihan</th>
@@ -67,7 +68,8 @@
                     </tr>
                     <tr>
                         <th scope="col">Tempat, Tgl Lahir</th>
-                        <td>{{ $daftar->tempat_lahir }}, {{ $daftar->tanggal_lahir }}</td>
+                        <td>{{ $daftar->tempat_lahir }},
+                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $daftar->tanggal_lahir)->format('d-m-Y') }}</td>
                     </tr>
                     <tr>
                         <th scope="col">Alamat</th>

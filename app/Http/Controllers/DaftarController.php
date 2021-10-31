@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Daftar;
 use App\Models\Jadwal;
+use App\Models\Pelatihan;
+use App\Models\Tanggal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -17,7 +19,8 @@ class DaftarController extends Controller
      */
     public function index()
     {
-        $jadwals = Jadwal::all();
+        $tanggals = Tanggal::all();
+        $pelatihans = Pelatihan::all();
         $expired_daftar = Daftar::where('is_payed', 'like', "belum")
                 ->where('created_at', '<', Carbon::now()->subDays(2))
                 ->get();
@@ -26,22 +29,27 @@ class DaftarController extends Controller
         }
         $daftars = Daftar::orderBy('tanggal_pelatihan', 'asc')
                 ->simplePaginate(5);
-        return view('daftar.index', compact('daftars', 'jadwals'))
+        return view('daftar.index', compact('daftars', 'tanggals', 'pelatihans'))
                 ->with('i', (request()->input('page', 1)-1)*5);
         
     }
     public function indexFiltered(Request $request)
     {
-        $jadwals = Jadwal::all();
+        $tanggals = Tanggal::all();
+        $pelatihans = Pelatihan::all();
         $keyword1 = $request->filter1;
         $keyword2 = $request->filter2;
         $keyword3 = $request->filter3;
+        $keyword4 = $request->filter4;
+        $keyword5 = $request->filter5;
         $daftars = Daftar::where('tanggal_pelatihan', 'like', "%" . $keyword1 . "%")
                 ->where('is_payed', 'like', "%" . $keyword2 . "%")
-                ->where('kode_unik', 'like', "%" . $keyword3 . "%")
+                ->where('sesi', 'like', "%" . $keyword3 . "%")
+                ->where('jenis_pelatihan', 'like', "%" . $keyword4 . "%")
+                ->where('kode_unik', 'like', "%" . $keyword5 . "%")
                 ->latest()
                 ->simplePaginate(5);
-        return view('daftar.filter', compact('daftars', 'jadwals', 'keyword1', 'keyword2', 'keyword3'))
+        return view('daftar.filter', compact('daftars', 'tanggals', 'pelatihans', 'keyword1', 'keyword2', 'keyword3', 'keyword4', 'keyword5'))
                 ->with('i', (request()->input('page', 1)-1)*5);
     }
     

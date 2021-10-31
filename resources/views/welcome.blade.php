@@ -104,7 +104,8 @@
                                                         {{ $jadwal->sesi }}
                                                     </p>
                                                     <p class="mb-0 font-weight-bold text-gray-800">Tanggal :
-                                                        {{ $jadwal->tanggal }}</p>
+                                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $jadwal->tanggal)->format('d-m-Y') }}
+                                                    </p>
                                                     <p class="mb-0 font-weight-bold text-gray-800">Jam :
                                                         {{ $jadwal->jam }}
                                                     </p>
@@ -119,7 +120,8 @@
                                                         {{ $jadwal->sesi }}
                                                     </p>
                                                     <p class="mb-0 font-weight-bold text-gray-800">Tanggal :
-                                                        {{ $jadwal->tanggal }}</p>
+                                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $jadwal->tanggal)->format('d-m-Y') }}
+                                                    </p>
                                                     <p class="mb-0 font-weight-bold text-gray-800">Jam :
                                                         {{ $jadwal->jam }}
                                                     </p>

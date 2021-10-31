@@ -35,18 +35,20 @@
                         <tr>
                             <td>{{ ++$i }}</td>
                             <td>{{ $jadwal->jenis_pelatihan }}</td>
-                            <td>{{ $jadwal->tanggal }}</td>
+                            <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $jadwal->tanggal)->format('d-m-Y') }}</td>
                             <td>{{ $jadwal->jam }}</td>
                             <td>{{ $jadwal->sesi }}</td>
                             <td>{{ $jadwal->limit_peserta }}</td>
                             <td>
                                 <form action="{{ route('jadwal.destroy', $jadwal->id) }}" method="POST">
                                     <a type="button" class="btn btn-warning btn-sm"
-                                        href="{{ route('jadwal.edit', $jadwal->id) }}">Edit</a>
+                                        href="{{ route('jadwal.edit', $jadwal->id) }}" title="edit"><i
+                                            class="fas fa-edit"></i></a>
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
+                                        title="delete"><i class="fas fa-trash"></i></button>
                                 </form>
 
                             </td>

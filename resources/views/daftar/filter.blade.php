@@ -24,27 +24,39 @@
                         <strong>Filter Data:</strong>
                     </div>
                     <div class="form-group col-md-6">
-                        <select class="custom-select mb-3" id="inputGroupSelect01" name="filter1">
+                        <select class="custom-select" id="inputGroupSelect01" name="filter1">
                             <option value="" selected>pilih tanggal..</option>
-                            @foreach ($jadwals as $jadwal)
-                                <option value="{{ $jadwal->tanggal }}" id="filter1">
-                                    {{ $jadwal->tanggal }}</option>
+                            @foreach ($tanggals as $tanggal)
+                                <option value="{{ $tanggal->tanggal }}" id="filter1">
+                                    {{ $tanggal->tanggal }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group mb-3 col-md-3">
-                        <select class="custom-select mb-3" id="inputGroupSelect01" name="filter2">
+                    <div class="form-group col-md-3">
+                        <select class="custom-select" id="inputGroupSelect01" name="filter2">
                             <option value="" selected>pilih status bayar..</option>
                             <option value="bayar" id="filter2">bayar</option>
                             <option value="belum" id="filter2">belum</option>
                         </select>
                     </div>
-                    <div class="form-group mb-3 col-md-3">
-                        <input type="text" class="form-control" id="filter3" placeholder="nomor pendaftaran">
+                    <div class="form-group col-md-3">
+                        <input type="text" class="form-control" name="filter3" id="filter3" placeholder="sesi">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <select class="custom-select" id="inputGroupSelect01" name="filter4">
+                            <option value="" selected>pilih pelatihan..</option>
+                            @foreach ($pelatihans as $pelatihan)
+                                <option value="{{ $pelatihan->jenis_pelatihan }}" id="filter4">
+                                    {{ $pelatihan->jenis_pelatihan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" name="filter5" id="filter5"
+                            placeholder="nomor pendaftaran">
                     </div>
                     <button type="submit" class="btn btn-primary mb-1 mr-1">Filter</button>
-                    <a href="{{ route('cetak.absen.tanggal', $keyword1) }}" class="btn btn-secondary mb-1 mr-1">Cetak
-                        Data</a>
+                    <a href="{{ route('cetak.absen', $daftars) }}" class="btn btn-secondary mb-1 mr-1">Cetak Data</a>
                     <a href="{{ route('daftar.index') }}" class="btn btn-success mb-1">Tampilkan Semua Data</a>
                 </div>
             </form>
@@ -67,38 +79,49 @@
                         <th scope="col">Kode Pendaftaran</th>
                         <th scope="col">Status Bayar</th>
                         <th scope="col">Action</th>
+                        <th scope="col">Button</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($daftars as $daftar)
                         <tr>
-                            <td class="text-sm-center">{{ $daftar->tanggal_pelatihan }}</td>
+                            <td class="text-sm-center">
+                                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $daftar->tanggal_pelatihan)->format('d-m-Y') }}
+                            </td>
                             <td class="text-sm-center">{{ $daftar->jenis_pelatihan }}</td>
                             <td class="text-sm-center">{{ $daftar->sesi }}</td>
                             <td>{{ $daftar->nama }}</td>
                             <td class="text-sm-center">{{ $daftar->jenis_kelamin }}</td>
                             <td class="text-sm-center">{{ $daftar->nomor_hp }}</td>
                             <td>{{ $daftar->email }}</td>
-                            <td>{{ $daftar->tempat_lahir }}, {{ $daftar->tanggal_lahir }}</td>
+                            <td>{{ $daftar->tempat_lahir }},
+                                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $daftar->tanggal_lahir)->format('d-m-Y') }}
+                            </td>
                             <td>{{ $daftar->alamat }}</td>
                             <td class="text-sm-center">{{ $daftar->status }}</td>
                             <td class="text-sm-center">{{ $daftar->instansi }}</td>
                             <td class="text-sm-center">{{ $daftar->kode_unik }}</td>
                             <td class="text-sm-center">{{ $daftar->is_payed }}</td>
-                            <td class="text-sm-center">
-                                <form method="POST" action="{{ route('daftar.payed', $daftar->id) }}">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-success btn-sm">Payed</button>
-                                </form>
-                                <form action="{{ route('daftar.destroy', $daftar->id) }}" method="POST">
-                                    <a type="button" class="btn btn-warning btn-sm"
-                                        href="{{ route('selesai', $daftar->id) }}">Complete</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                </form>
+                            <td class="text-sm-center" colspan="2">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Action">
+                                    <form method="POST" action="{{ route('daftar.payed', $daftar->id) }}">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-success btn-sm mr-1" title="payed"><i
+                                                class="fas fa-dollar-sign"></i></button>
+                                    </form>
+                                    <form action="{{ route('daftar.destroy', $daftar->id) }}" method="POST">
+                                        <a type="button" class="btn btn-warning btn-sm"
+                                            href="{{ route('selesai', $daftar->id) }}" title="complete"><i
+                                                class="fas fa-check"></i></a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
+                                            title="delete"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
