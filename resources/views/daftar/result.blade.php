@@ -26,12 +26,18 @@
             <div class="col-xs-12 col-sm-12 col-md-12 mb-4">
                 <a class="btn btn-secondary" href="{{ route('cetak', $daftar->id) }}">Cetak Kartu
                     Pendaftaran</a>
+                <a class="btn btn-secondary" href="https://api.whatsapp.com/send?phone=6281939123456">Kirim Bukti
+                    Bayar</a>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <h3>Nomor Pendaftaran:</h3>
                     <h4><b>{{ $daftar->kode_unik }}</b></h4>
                     <p>Harap ingat Nomor Pendaftaran Kamu!</p>
+                    <p>Anda bisa melakukan Pembayaran melalui Tranfer bank dibawah ini</p>
+                    <p>Bank BCA</p>
+                    <p>Rekening : xxx.xxx.xxxx </p>
+                    <p>a/n : Codepolitan</p>
                 </div>
             </div>
             <table class="table">

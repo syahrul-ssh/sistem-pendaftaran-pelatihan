@@ -28,6 +28,8 @@ class Daftar extends Model
             'instansi',
             'kode_unik',
             'id_jadwal',
+            'jam_mulai',
+            'jam_selesai',
     ];
 
 

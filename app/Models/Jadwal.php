@@ -12,9 +12,11 @@ class Jadwal extends Model
     protected $fillable = [
         'jenis_pelatihan',
         'tanggal', 
-        'jam',
+        'jam_mulai',
+        'jam_selesai',
         'sesi',
         'limit_peserta',
+        'publish',
     ];
 
     /**

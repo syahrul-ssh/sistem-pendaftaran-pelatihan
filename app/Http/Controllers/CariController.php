@@ -27,19 +27,4 @@ class CariController extends Controller
         }
         return view('daftar.notFound');
     }
-
-    public function searchSertifikat()
-    {
-        return view('selesai.search');
-    }
-
-    public function findSertifikat(Request $request)
-    {
-        $keyword = $request->search;
-        $selesai = Selesai::where('kode_unik', 'like', "%" . $keyword . "%")->first();
-        if ($selesai != null) {
-            return view('selesai.result', compact('selesai'));
-        }
-        return view('selesai.notFound');
-    }
 }

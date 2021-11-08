@@ -23,7 +23,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Jenis Pelatihan :</strong>
-                            <input type="text" name="jenis_pelatihan" class="form-control">
+                            <input type="text" name="jenis_pelatihan" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">

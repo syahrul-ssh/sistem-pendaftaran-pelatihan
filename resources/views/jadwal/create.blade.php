@@ -41,8 +41,14 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Jam:</strong>
-                            <input type="time" name="jam" class="form-control" required>
+                            <strong>Jam Mulai:</strong>
+                            <input type="time" name="jam_mulai" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Jam Selesai:</strong>
+                            <input type="time" name="jam_selesai" class="form-control" required>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">

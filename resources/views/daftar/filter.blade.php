@@ -16,51 +16,85 @@
 
         <!-- Content Row -->
         <!-- Start kode untuk form pencarian -->
-        <div class="row">
-            <form class="form" method="get" action="{{ route('daftar.filter') }}">
-                {{ csrf_field() }}
-                <div class="form-row mb-3">
-                    <div class="container">
-                        <strong>Filter Data:</strong>
+
+        <div class="container">
+            <p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Cetak dengan data yang spesifik
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <form class="form" method="get" action="{{ route('cetak.absen.tanggal') }}">
+                    {{ csrf_field() }}
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-3">
+                            <select class="custom-select" id="inputGroupSelect01" name="filter1">
+                                <option value="" selected>pilih tanggal..</option>
+                                @foreach ($tanggals as $tanggal)
+                                    <option value="{{ $tanggal->tanggal }}" id="filter1">
+                                        {{ $tanggal->tanggal }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="text" class="form-control" name="filter3" id="filter3" placeholder="sesi">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <select class="custom-select" id="inputGroupSelect01" name="filter4">
+                                <option value="" selected>pilih pelatihan..</option>
+                                @foreach ($pelatihans as $pelatihan)
+                                    <option value="{{ $pelatihan->jenis_pelatihan }}" id="filter4">
+                                        {{ $pelatihan->jenis_pelatihan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-1 mr-1">Cetak</button>
                     </div>
-                    <div class="form-group col-md-6">
-                        <select class="custom-select" id="inputGroupSelect01" name="filter1">
-                            <option value="" selected>pilih tanggal..</option>
-                            @foreach ($tanggals as $tanggal)
-                                <option value="{{ $tanggal->tanggal }}" id="filter1">
-                                    {{ $tanggal->tanggal }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <select class="custom-select" id="inputGroupSelect01" name="filter2">
-                            <option value="" selected>pilih status bayar..</option>
-                            <option value="bayar" id="filter2">bayar</option>
-                            <option value="belum" id="filter2">belum</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" class="form-control" name="filter3" id="filter3" placeholder="sesi">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <select class="custom-select" id="inputGroupSelect01" name="filter4">
-                            <option value="" selected>pilih pelatihan..</option>
-                            @foreach ($pelatihans as $pelatihan)
-                                <option value="{{ $pelatihan->jenis_pelatihan }}" id="filter4">
-                                    {{ $pelatihan->jenis_pelatihan }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" name="filter5" id="filter5"
-                            placeholder="nomor pendaftaran">
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-1 mr-1">Filter</button>
-                    <a href="{{ route('cetak.absen', $daftars) }}" class="btn btn-secondary mb-1 mr-1">Cetak Data</a>
-                    <a href="{{ route('daftar.index') }}" class="btn btn-success mb-1">Tampilkan Semua Data</a>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
+        <form class="form" method="get" action="{{ route('daftar.filter') }}">
+            {{ csrf_field() }}
+            <div class="form-row mb-3">
+                <div class="container">
+                    <strong>Filter Data :</strong>
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="custom-select" id="inputGroupSelect01" name="filter1">
+                        <option value="" selected>pilih tanggal..</option>
+                        @foreach ($tanggals as $tanggal)
+                            <option value="{{ $tanggal->tanggal }}" id="filter1">
+                                {{ $tanggal->tanggal }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <select class="custom-select" id="inputGroupSelect01" name="filter2">
+                        <option value="" selected>pilih status bayar..</option>
+                        <option value="bayar" id="filter2">bayar</option>
+                        <option value="belum" id="filter2">belum</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <input type="text" class="form-control" name="filter3" id="filter3" placeholder="sesi">
+                </div>
+                <div class="form-group col-md-6">
+                    <select class="custom-select" id="inputGroupSelect01" name="filter4">
+                        <option value="" selected>pilih pelatihan..</option>
+                        @foreach ($pelatihans as $pelatihan)
+                            <option value="{{ $pelatihan->jenis_pelatihan }}" id="filter4">
+                                {{ $pelatihan->jenis_pelatihan }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" name="filter5" id="filter5" placeholder="nomor pendaftaran">
+                </div>
+                <button type="submit" class="btn btn-primary mb-1 mr-1">Filter</button>
+                <a href="{{ route('daftar.index') }}" class="btn btn-success mb-1">Tampilkan Semua Data</a>
+            </div>
+        </form>
         <div class="row table-responsive">
             <table class="table table-striped table-sm">
                 <thead>

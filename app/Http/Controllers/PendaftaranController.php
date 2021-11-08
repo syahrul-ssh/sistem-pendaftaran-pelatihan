@@ -13,13 +13,13 @@ class PendaftaranController extends Controller
         //mengambil data dari tabel jadwals
         $jadwals = Jadwal::orderBy('tanggal', 'asc')
                 ->orderBy('jenis_pelatihan', 'asc')
-                ->orderBy('jam', 'asc')
                 ->orderBy('sesi', 'asc')
-                ->simplePaginate(20);
+                ->orderBy('jam_mulai', 'asc')
+                ->simplePaginate(10000);
         $daftars = Daftar::all();
         //mengirim data ke view
         return view('pendaftaran.index', compact('jadwals', 'daftars'))
-                ->with('i', (request()->input('page', 1)-1)*20);
+                ->with('i', (request()->input('page', 1)-1)*10000);
     }
 
     public function create(Jadwal $jadwal)

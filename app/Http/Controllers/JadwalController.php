@@ -18,13 +18,31 @@ class JadwalController extends Controller
     public function index()
     {
         //mengambil data dari tabel jadwals
-        $jadwals = Jadwal::orderBy('tanggal', 'asc')
-                ->orderBy('jam', 'asc')
+        $jadwals = Jadwal::orderBy('tanggal', 'desc')
+                ->orderBy('jam_mulai', 'desc')
                 ->orderBy('sesi', 'asc')
-                ->simplePaginate(5);;
+                ->simplePaginate(20);
+        $expired_jadwal = Jadwal::where('tanggal', '<=', date('Y-m-d'))
+                ->update(['publish' => 'Tidak']);
         //mengirim data ke view
         return view('jadwal.index', compact('jadwals'))
-                ->with('i', (request()->input('page', 1) - 1) * 5);
+                ->with('i', (request()->input('page', 1) - 1) * 20);
+    }
+
+    public function publish(Jadwal $jadwal)
+    {
+        //insert request dari form ke database
+        $jadwal = Jadwal::find($jadwal->id);
+        if ($jadwal->publish == 'Tidak') {
+            $jadwal->publish = 'Ya';
+            $jadwal->save();
+        } else {
+            $jadwal->publish = 'Tidak';
+            $jadwal->save();
+        }
+
+        //riderict juka sukses
+        return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil diupdate!');
     }
 
     /**
@@ -51,7 +69,8 @@ class JadwalController extends Controller
         $request->validate([
             'jenis_pelatihan' => 'required',
             'tanggal'=>'required',
-            'jam'=>'required',
+            'jam_mulai'=>'required',
+            'jam_selesai'=>'required',
             'sesi' => 'required',
             'limit_peserta' => 'required'
         ]);
@@ -66,9 +85,6 @@ class JadwalController extends Controller
             Tanggal::create(['tanggal'=>$request->tanggal]);
             return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan!');
         }
-
-        //riderict juka sukses
-        
     }
 
     /**
@@ -107,7 +123,8 @@ class JadwalController extends Controller
         $request->validate([
             'jenis_pelatihan' => 'required',
             'tanggal'=>'required',
-            'jam'=>'required',
+            'jam_mulai'=>'required',
+            'jam_selesai'=>'required',
             'sesi' => 'required',
             'limit_peserta' => 'required'
         ]);

@@ -22,7 +22,7 @@ class DaftarController extends Controller
         $tanggals = Tanggal::all();
         $pelatihans = Pelatihan::all();
         $expired_daftar = Daftar::where('is_payed', 'like', "belum")
-                ->where('created_at', '<', Carbon::now()->subDays(2))
+                ->where('created_at', '<', Carbon::now()->subDays(1))
                 ->get();
         foreach ($expired_daftar as $expire) {
             $expire->delete();
@@ -85,7 +85,9 @@ class DaftarController extends Controller
             'alamat'=>'required',
             'status'=>'required',
             'kode_unik'=>'required',
-            'id_jadwal' =>'required'
+            'id_jadwal' =>'required',
+            'jam_mulai' =>'required',
+            'jam_selesai' =>'required'
         ]);
 
         $daftar = Daftar::create($request->all());
@@ -125,7 +127,7 @@ class DaftarController extends Controller
         $daftar->save();
 
         //riderict juka sukses
-        return redirect()->route('daftar.index')->with('success', 'Jadwal berhasil diupdate!');
+        return redirect()->route('daftar.index')->with('success', 'Data berhasil diupdate!');
     }
 
     /**
@@ -150,7 +152,9 @@ class DaftarController extends Controller
             'status'=>'required',
             'instansi'=>'required',
             'kode_unik'=>'required',
-            'id_jadwal' =>'required'
+            'id_jadwal' =>'required',
+            'jam_mulai' =>'required',
+            'jam_selesai' =>'required'
         ]);
 
         $daftar->update($request->all());

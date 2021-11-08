@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Daftar;
 use App\Models\Jadwal;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -27,13 +28,15 @@ class HomeController extends Controller
     {
         $jadwals = Jadwal::orderBy('tanggal', 'asc')
                 ->orderBy('jenis_pelatihan', 'asc')
-                ->orderBy('jam', 'asc')
                 ->orderBy('sesi', 'asc')
-                ->simplePaginate(20);
+                ->orderBy('jam_mulai', 'asc')
+                ->simplePaginate(10000);
+        $expired_jadwal = Jadwal::where('tanggal', '<', Carbon::now())
+                ->update(['publish' => 'Tidak']);
         $daftars = Daftar::all();
         //mengirim data ke view
         return view('home', compact('jadwals', 'daftars'))
-                ->with('i', (request()->input('page', 1)-1)*20);
+                ->with('i', (request()->input('page', 1)-1)*10000);
     }
     
 }

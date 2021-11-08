@@ -115,6 +115,8 @@
                         </div>
                         <input type="hidden" name="kode_unik" value="{{ random_int(100000, 999999) }}">
                         <input type="hidden" name="id_jadwal" value="{{ $jadwal->id }}">
+                        <input type="hidden" name="jam_mulai" value="{{ $jadwal->jam_mulai }}">
+                        <input type="hidden" name="jam_selesai" value="{{ $jadwal->jam_selesai }}">
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>

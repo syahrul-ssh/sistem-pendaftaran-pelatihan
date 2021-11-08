@@ -31,6 +31,8 @@ class CreateDaftarsTable extends Migration
             $table->string('kode_unik')->unique();
             $table->string('is_payed')->default('belum');
             $table->integer('id_jadwal');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->timestamps();
         });
     }

@@ -30,6 +30,8 @@ class CreateSelesaisTable extends Migration
             $table->string('kode_unik');
             $table->string('is_payed');
             $table->integer('id_jadwal');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->timestamps();
         });
     }

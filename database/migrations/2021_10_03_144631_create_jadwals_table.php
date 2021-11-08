@@ -17,9 +17,11 @@ class CreateJadwalsTable extends Migration
             $table->id();
             $table->string('jenis_pelatihan');
             $table->date('tanggal');
-            $table->time('jam');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->string('sesi');
             $table->integer('limit_peserta');
+            $table->string('publish')->default('Tidak');
             $table->timestamps();
         });
     }

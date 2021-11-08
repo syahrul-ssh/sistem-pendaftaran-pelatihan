@@ -12,12 +12,14 @@ class LandingController extends Controller
     {
         $jadwals = Jadwal::orderBy('tanggal', 'asc')
                 ->orderBy('jenis_pelatihan', 'asc')
-                ->orderBy('jam', 'asc')
+                ->orderBy('jam_mulai', 'asc')
                 ->orderBy('sesi', 'asc')
-                ->simplePaginate(20);
+                ->simplePaginate(10000);
         $daftars = Daftar::all();
+        $expired_jadwal = Jadwal::where('tanggal', '<=', date('Y-m-d'))
+                ->update(['publish' => 'Tidak']);
         //mengirim data ke view
         return view('welcome', compact('jadwals', 'daftars'))
-                ->with('i', (request()->input('page', 1)-1)*20);
+                ->with('i', (request()->input('page', 1)-1)*10000);
     }
 }
