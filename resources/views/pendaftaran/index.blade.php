@@ -18,33 +18,11 @@
                                 ->where('id_jadwal', 'like', $jadwal->id)
                                 ->count();
                         @endphp
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        @if ($daftars == $jadwal->limit_peserta)
-                                            <a type="button" class="btn" href="#">
-                                                <div class="col mr-2 text-center">
-                                                    <div class="h5 font-weight-bold text-primary text-uppercase mb-1">
-                                                        {{ $jadwal->jenis_pelatihan }}</div>
-                                                    <p class="mb-0 font-weight-bold text-gray-800">Sesi ke :
-                                                        {{ $jadwal->sesi }}
-                                                    </p>
-                                                    <p class="mb-0 font-weight-bold text-gray-800">Tanggal :
-                                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $jadwal->tanggal)->format('d-m-Y') }}
-                                                    </p>
-                                                    <p class="mb-0 font-weight-bold text-gray-800">Jam Mulai :
-                                                        {{ $jadwal->jam_mulai }}
-                                                    </p>
-                                                    <p class="mb-0 font-weight-bold text-gray-800">Jam Selesai :
-                                                        {{ $jadwal->jam_selesai }}
-                                                    </p>
-                                                    <p class="mb-0 font-weight-bold text-gray-800">{{ $daftars }} /
-                                                        {{ $jadwal->limit_peserta }} peserta</p>
-                                                    <p class="mb-0 font-weight-bold text-danger">Peserta telah penuh!</p>
-                                                </div>
-                                            </a>
-                                        @else
+                        @if ($daftars < $jadwal->limit_peserta)
+                            <div class="col-xl-4 col-md-6 mb-4">
+                                <div class="card border-left-primary h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
                                             <a type="button" class="btn"
                                                 href="{{ route('pendaftaran.create', $jadwal->id) }}">
                                                 <div class="col mr-2 text-center">
@@ -68,11 +46,11 @@
                                                     </p>
                                                 </div>
                                             </a>
-                                        @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                 @endforeach
                 {!! $jadwals->links() !!}

@@ -64,10 +64,9 @@
                     <p class="my-1 ml-3">Nama</p>
                     <p class="my-1 ml-3" style="font-size: 15px;">Jenis Pelatihan</p>
                 </th>
-                <td class="h6 text-left" colspan="3">
+                <td class="h6 text-left text-truncate" colspan="3">
                     <p class="my-1 text-left">: {{ $daftar->nama }}</p>
                     <p class="my-1 text-left" style="font-size: 15px;">: {{ $daftar->jenis_pelatihan }}</p>
-
                 </td>
                 <td class="h6">
                 </td>
@@ -108,7 +107,7 @@
                     <p class="h4 my-1 text-right" style="border-right: #37517E;">{{ $daftar->sesi }}</p>
                 </td>
                 <td class="h6">
-                    <p class="my-1" style="">dari : {{ $daftar->jam_mulai }}</p>
+                    <p class="my-1" style="">Dari : {{ $daftar->jam_mulai }}</p>
                     <p class="my-1" style="">Sampai : {{ $daftar->jam_selesai }}</p>
                 </td>
             </tr>

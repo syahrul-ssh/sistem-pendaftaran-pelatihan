@@ -24,7 +24,6 @@ Route::get('/', [App\Http\Controllers\LandingController::class, 'landing'])->nam
 
 Auth::routes([
     'register' => false,
-    'reset' => false,
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
